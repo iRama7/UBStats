@@ -1,0 +1,9 @@
+name: UBStats
+version: '${project.version}'
+main: rama.ubstats.UBStats
+api-version: 1.17
+load: STARTUP
+authors: [ ImRama ]
+description: Statistics collector for UnBloque
+commands:
+  ubstats:
