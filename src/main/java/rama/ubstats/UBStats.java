@@ -1,5 +1,8 @@
 package rama.ubstats;
 
+import net.dv8tion.jda.api.JDA;
+import net.dv8tion.jda.api.JDABuilder;
+import net.dv8tion.jda.api.requests.GatewayIntent;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.configuration.InvalidConfigurationException;
@@ -24,6 +27,8 @@ public final class UBStats extends JavaPlugin {
     private File errorLogFile;
     private FileConfiguration errorLogConfig;
     public long serverStart;
+    String token = this.getConfig().getString("token");
+    public JDA jda = JDABuilder.createDefault(token, GatewayIntent.GUILD_MESSAGES).build().awaitReady();
 
     public UBStats() throws LoginException, InterruptedException {
     }
@@ -50,6 +55,8 @@ public final class UBStats extends JavaPlugin {
         } catch (FileNotFoundException e) {
             throw new RuntimeException(e);
         }
+        jda.shutdown();
+        Bukkit.getConsoleSender().sendMessage(ChatColor.translateAlternateColorCodes('&', "&6[&eUBStats&6] &fDesactivando JDA..."));
     }
 
     public int getUptime(){
