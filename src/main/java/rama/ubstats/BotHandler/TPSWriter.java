@@ -23,14 +23,17 @@ public class TPSWriter {
     }
 
     public void sendTPSReport(Double TPS, Double avgTPS, String URL){
+
+        String avgTPS_trunc = String.format("%.2f", avgTPS);
+
         String server_name = plugin.getConfig().getString("server_name");
                 if(server_name.equals("minas")){
                     EmbedBuilder eb = new EmbedBuilder();
                     eb.setTitle("Nuevo bajón de TPS ("+server_name+")");
                     eb.setDescription("Fecha: "+TimeFormat.RELATIVE.now());
-                    eb.addField("TPS Actuales", String.valueOf(TPS), true);
-                    eb.addField("Media de TPS", String.valueOf(avgTPS), true);
-                    eb.addField("Timings", URL, true);
+                    eb.addField("Caída de TPS", String.valueOf(TPS), false);
+                    eb.addField("Media de TPS", avgTPS_trunc, false);
+                    eb.addField("Timings", URL, false);
                     TextChannel textChannel = jda.getGuildById("312552375804100609").getTextChannelById("992443631858372678");
                     textChannel.sendMessageEmbeds(eb.build()).queue();
 
@@ -38,9 +41,9 @@ public class TPSWriter {
                     EmbedBuilder eb = new EmbedBuilder();
                     eb.setTitle("Nuevo bajón de TPS ("+server_name+")");
                     eb.setDescription("Fecha: "+TimeFormat.RELATIVE.now());
-                    eb.addField("TPS Actuales", String.valueOf(TPS), true);
-                    eb.addField("Media de TPS", String.valueOf(avgTPS), true);
-                    eb.addField("Timings", URL, true);
+                    eb.addField("Caída de TPS:", String.valueOf(TPS), false);
+                    eb.addField("Media de TPS:", avgTPS_trunc, false);
+                    eb.addField("Timings:", URL, false);
                     TextChannel textChannel = jda.getGuildById("312552375804100609").getTextChannelById("992443631858372678");
                     textChannel.sendMessageEmbeds(eb.build()).queue();
                 }
