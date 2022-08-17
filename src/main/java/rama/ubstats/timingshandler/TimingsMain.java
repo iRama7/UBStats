@@ -63,7 +63,7 @@ public class TimingsMain {
         //"[13:00:46] [Timings paste thread/INFO]: View Timings Report: https://timings.aikar.co/?id=def54314993641f9ad5a0a66c24b67e0"
         if(timingLine != null) {
 
-            String regex = "https:\\/\\/timings\\.aikar\\.co\\/\\?id=[0-9a-f]+";
+            String regex = "https:\\/\\/timings\\.aikar\\.co\\/dev\\/\\?id=[0-9a-f]+";
 
             String[] parts = timingLine.split("View Timings Report: ");
             TimingURL = parts[0];
