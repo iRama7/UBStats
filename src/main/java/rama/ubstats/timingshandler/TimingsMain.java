@@ -28,19 +28,10 @@ public class TimingsMain {
     private double averageTickPerMinute = 20;
     private List<Double> tickSamples = new ArrayList<>();
 
-    private int timingsTaskID;
 
-    public void startTimingsReport(){
-        Bukkit.getLogger().info("Iniciando reporte de tiempos");
-        Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "timings on");
-        timingsTaskID = Bukkit.getScheduler().scheduleSyncDelayedTask(plugin, new Runnable() {
-            @Override
-            public void run() {
+    public void pasteTimingsReport(){
                 Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "timings paste");
                 Bukkit.getLogger().info("Pegando reporte de tiempos");
-            }
-        },300*20);
-        
     }
 
     public String getLatestTimingsURL() throws IOException {
@@ -117,8 +108,7 @@ public class TimingsMain {
         this.lastTimeStamp = currentTimeStamp;
         if(serverTps <= 18 && plugin.getUptime() > 60){
             BukkitScheduler scheduler = getServer().getScheduler();
-            if(!scheduler.isQueued(timingsTaskID)){
-                startTimingsReport();
+                pasteTimingsReport();
                 latestTPS = serverTps;
                 latestAvgTPS = averageTickPerMinute;
                 scheduler.scheduleSyncDelayedTask(plugin, new Runnable() {
@@ -137,9 +127,6 @@ public class TimingsMain {
                         }
                     }
                 }, 303*20);
-            }else{
-                Bukkit.getLogger().warning("[UBStats] Se detectó un bajón de TPS pero no se registrará reporte de tiempos porque ya hay uno en curso!");
-            }
         }
     }
 
