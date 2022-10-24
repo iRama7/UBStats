@@ -45,6 +45,15 @@ public class TPSWriter {
                     eb.addField("Timings:", URL, false);
                     TextChannel textChannel = jda.getGuildById("312552375804100609").getTextChannelById("992443631858372678");
                     textChannel.sendMessageEmbeds(eb.build()).queue();
+                }else if(server_name.equals("survival")){
+                    EmbedBuilder eb = new EmbedBuilder();
+                    eb.setTitle("Nuevo bajón de TPS ("+server_name+")");
+                    eb.setDescription("Fecha: "+TimeFormat.RELATIVE.now());
+                    eb.addField("Caída de TPS:", TPS_trunc, false);
+                    eb.addField("Media de TPS:", avgTPS_trunc, false);
+                    eb.addField("Timings:", URL, false);
+                    TextChannel textChannel = jda.getGuildById("312552375804100609").getTextChannelById("992443631858372678");
+                    textChannel.sendMessageEmbeds(eb.build()).queue();
                 }
             }
 }

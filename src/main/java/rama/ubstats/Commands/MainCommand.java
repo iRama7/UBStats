@@ -7,6 +7,7 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.jetbrains.annotations.NotNull;
 import rama.ubstats.BotHandler.LogsWriter;
+import rama.ubstats.BotHandler.TPSWriter;
 import rama.ubstats.LoggingHandler.LoggingMain;
 import rama.ubstats.UBStats;
 import rama.ubstats.timingshandler.TimingsMain;

@@ -57,6 +57,18 @@ public class LogsWriter {
 
                         TextChannel textChannel = jda.getGuildById("312552375804100609").getTextChannelById("992441585159643206");
                         textChannel.sendMessageEmbeds(eb.build()).queue();
+                    }else if(server_name.equals("survival")){
+                        EmbedBuilder eb = new EmbedBuilder();
+                        eb.setTitle("Registro de errores ("+server_name+")");
+                        eb.setDescription("Actualizado: "+TimeFormat.RELATIVE.now());
+                        try {
+                            eb.addField("URL", paste(file), true);
+                        } catch (IOException e) {
+                            throw new RuntimeException(e);
+                        }
+
+                        TextChannel textChannel = jda.getGuildById("312552375804100609").getTextChannelById("1032355878503977041");
+                        textChannel.sendMessageEmbeds(eb.build()).queue();
                     }
                 }
             }, 0, ((30*30*20)*20)); //5 horas

@@ -108,7 +108,12 @@ public class TimingsMain {
         this.lastTimeStamp = currentTimeStamp;
         if(serverTps <= 18 && plugin.getUptime() > 60){
             BukkitScheduler scheduler = getServer().getScheduler();
-                pasteTimingsReport();
+            scheduler.scheduleSyncDelayedTask(plugin, new Runnable() {
+                @Override
+                public void run() {
+                    pasteTimingsReport();
+                }
+            }, 20*120);
                 latestTPS = serverTps;
                 latestAvgTPS = averageTickPerMinute;
                 scheduler.scheduleSyncDelayedTask(plugin, new Runnable() {
